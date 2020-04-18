@@ -28,10 +28,14 @@ public class PlayerController : MonoBehaviour
         actions.Enable();
     }
 
+    private void Update()
+    {
+        
+    }
+
     void FixedUpdate()
     {
-
-        lookVector = actions.Player.Look.ReadValue<Vector2>(); 
+        lookVector = actions.Player.Look.ReadValue<Vector2>();
         moveVector = actions.Player.Move.ReadValue<Vector2>();
 
         float roll = lookVector.x;
@@ -41,14 +45,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 strafe = new Vector3(moveVector.x * Speed_Strafe * Time.fixedDeltaTime, 0, moveVector.y * Speed_Strafe * Time.fixedDeltaTime);
 
-        Vector3 currentEulerAngles = this.transform.eulerAngles;
-        Vector3 targetEulerAngles  = this.transform.eulerAngles + new Vector3(pitch * Speed_Pitch * Time.fixedDeltaTime, roll * Speed_Roll * Time.fixedDeltaTime, 0);
+        Quaternion deltaRotation = Quaternion.Euler(new Vector3(pitch * Speed_Pitch * Time.fixedDeltaTime, roll * Speed_Roll * Time.fixedDeltaTime, 0));
 
-        Quaternion lerpedRotation = Quaternion.Euler(Vector3.Lerp(currentEulerAngles, targetEulerAngles, Time.fixedDeltaTime * Rotation_Lerp_Speed));
+        Quaternion targetRotation = Quaternion.Lerp(rb.rotation, rb.rotation * deltaRotation, Time.fixedDeltaTime * Rotation_Lerp_Speed);
 
-        rb.MoveRotation(lerpedRotation);
-
-
+        rb.MoveRotation(targetRotation);
         rb.AddRelativeForce(strafe);
     }
 }

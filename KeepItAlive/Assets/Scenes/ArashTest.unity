@@ -157,7 +157,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!4 &211418856
 Transform:
   m_ObjectHideFlags: 0
@@ -184,12 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc1f16e5a065ee42bdc56fc4a5c98ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed_Pitch: 100
-  Speed_Roll: 100
-  Speed_Yaw: 100
+  Speed_Pitch: 25
+  Speed_Roll: 25
+  Speed_Yaw: 25
   Speed_Vectical: 100
   Speed_Strafe: 100
-  Rotation_Lerp_Speed: 1
+  Rotation_Lerp_Speed: 5
 --- !u!20 &211418858
 Camera:
   m_ObjectHideFlags: 0
