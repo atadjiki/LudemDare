@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
     internal void HandleLateral()
     {
-        Vector2 Lateral_Vector = Actions.Player.Lateral.ReadValue<Vector2>().normalized;
+        Vector2 Lateral_Vector = Actions.Player.Lateral.ReadValue<Vector2>();
 
         Vector3 deltaPosition = new Vector3(Lateral_Vector.x * Speed_Lateral * Time.fixedDeltaTime,0 , Lateral_Vector.y * Speed_Lateral * Time.fixedDeltaTime);
 
