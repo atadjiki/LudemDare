@@ -1,66 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody), typeof(Camera))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float turnSpeed = 1f;
-    [SerializeField] private float rollSpeed = 0.1f;
-    [SerializeField] private bool invertY = false;
+    [SerializeField] private float Speed_Pitch = 5.0f;
+    [SerializeField] private float Speed_Roll = 5.0f;
+    [SerializeField] private float Speed_Yaw = 5.0f;
+    [SerializeField] private float Speed_Vectical = 100.0f;
+    [SerializeField] private float Speed_Horizontal = 20.0f;
 
     private Rigidbody rb;
+    private PlayerInputActions actions;
 
-    private PlayerActions playerInput;
-
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        playerInput = new PlayerActions();
-
-        playerInput.Player.Move.performed += OnMove;
-    }
-
-    private void OnMove()
-    {
-        
-    }
-
-    void OnEnable()
-    {
-        // Lock the cursor and hide it.
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        actions = new PlayerInputActions();
     }
 
     void FixedUpdate()
     {
-        rb.AddRelativeTorque(GetRotation(), ForceMode.VelocityChange);
-        rb.AddRelativeForce(GetDirection() * moveSpeed, ForceMode.VelocityChange);
-    }
+        Vector3 lookVector = actions.Player.Look.ReadValue<Vector3>();
+        float roll = lookVector.x;
+        float pitch = lookVector.y;
+        float yaw = lookVector.z;
 
-    Vector3 GetDirection()
-    {
-        // Create a movement direction vector based on keyboard input.
-        var dir = new Vector3();
-        if (Input.GetKey(KeyCode.W)) dir += Vector3.forward;
-        if (Input.GetKey(KeyCode.S)) dir += Vector3.back;
-        if (Input.GetKey(KeyCode.A)) dir += Vector3.left;
-        if (Input.GetKey(KeyCode.D)) dir += Vector3.right;
-        if (Input.GetKey(KeyCode.LeftControl)) dir += Vector3.down;
-        if (Input.GetKey(KeyCode.Space)) dir += Vector3.up;
-        return dir;
-    }
+        Vector2 moveVector = actions.Player.Move.ReadValue<Vector2>();
 
-    Vector3 GetRotation()
-    {
-        float yaw = Input.GetAxis("Mouse X");
-        float pitch = Input.GetAxis("Mouse Y") * (invertY ? 1 : -1);
-        float roll = 0;
-        if (Input.GetKey(KeyCode.Q)) roll += 1;
-        if (Input.GetKey(KeyCode.E)) roll -= 1;
-        return new Vector3(pitch * turnSpeed, yaw * turnSpeed, roll * rollSpeed);
+        Vector3 strafe = new Vector3(moveVector.x * Speed_Horizontal * Time.deltaTime, moveVector.y * Speed_Horizontal * Time.deltaTime, 0);
+
+
+        rb.AddRelativeTorque(pitch * Speed_Pitch * Time.deltaTime, yaw * Speed_Yaw * Time.deltaTime, roll * Speed_Roll * Time.deltaTime);
+       // rb.AddRelativeForce(0, 0, power * Speed_Vectical * Time.deltaTime);
+        rb.AddRelativeForce(strafe);
     }
 }
