@@ -130,11 +130,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211418856}
-  - component: {fileID: 211418855}
   - component: {fileID: 211418858}
-  - component: {fileID: 211418857}
-  - component: {fileID: 211418859}
+  - component: {fileID: 211418855}
   - component: {fileID: 211418860}
+  - component: {fileID: 211418859}
+  - component: {fileID: 211418857}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -152,11 +152,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0.5
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.25
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 116
+  m_Constraints: 0
   m_CollisionDetection: 3
 --- !u!4 &211418856
 Transform:
@@ -170,7 +170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &211418857
 MonoBehaviour:
@@ -184,12 +184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc1f16e5a065ee42bdc56fc4a5c98ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed_Pitch: 25
-  Speed_Roll: 25
-  Speed_Yaw: 25
-  Speed_Vectical: 100
-  Speed_Strafe: 100
-  Rotation_Lerp_Speed: 5
+  Speed_Pitch: 5
+  Speed_Roll: 5
+  Speed_Yaw: 5
+  Speed_Vertical: 10
+  Speed_Lateral: 10
+  Lerp_Rotate: 50
+  Lerp_Move: 50
 --- !u!20 &211418858
 Camera:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: bc612338b1475f94f85a02061c6e704e,
     type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -262,15 +263,23 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: ba9d9656-843f-4056-b27e-fc5042f88ed0
-    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: Player/Lateral[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c85c49c5-ea7f-4682-9048-60d9ea3321b8
+    m_ActionName: Player/Vertical[/Keyboard/leftShift,/Keyboard/space,/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: dc802ac7-8637-43bb-b3ad-4680595231f3
-    m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
+    m_ActionName: Player/LookPitchRoll[/XInputControllerWindows/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c7218a9-2342-4f7e-8086-02b80170229f
+    m_ActionName: Player/LookYaw[/XInputControllerWindows/leftShoulder,/XInputControllerWindows/rightShoulder,/Keyboard/q,/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 9d5199c9-e636-4aa1-a2e1-4d3ce9064d1c
-    m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
+    m_ActionName: Player/Interact[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f76bec23-31a9-442d-aa67-1c55eb8c6c4d
@@ -311,11 +320,11 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9b27318e-ded5-4067-83b4-562064ea8e7e
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 211418858}
 --- !u!135 &211418860
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -606,5 +615,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
