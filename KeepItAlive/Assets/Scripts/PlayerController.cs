@@ -104,11 +104,14 @@ public class PlayerController : MonoBehaviour
 
     internal void Interact()
     {
+
         //perform raycast to detect object
         Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit) && isHolding == false)
         {
+            Debug.Log("Hit object " + hit.collider.gameObject.name);
+
             if (hit.transform.gameObject.GetComponent<Interactable>() != null && Vector3.Distance(this.transform.position, hit.transform.position) <= interactDistance)
             {
                 if (hit.transform.gameObject.GetComponent<Grabbable>() != null)
@@ -123,11 +126,17 @@ public class PlayerController : MonoBehaviour
                 //{
                 //    hit.transform.gameObject.GetComponent<__r>().Interact();
                 //}
+
+                
             }
         }
         else if (isHolding)
         {
             Release();
+        }
+        else
+        {
+            Debug.Log("Did not hit any objects");
         }
     }
 
