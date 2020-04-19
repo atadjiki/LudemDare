@@ -50,7 +50,6 @@ public class CharacterInteraction : Interactable
         if(other.gameObject.GetComponent<Beer>() != null)
         {
             PlayerController.Instance.Release();
-            StartCoroutine(other.gameObject.GetComponent<Interactable>().DestroyAfterSeconds(0.25f));
         }
     }
 }

@@ -48,21 +48,15 @@ public class Boombox : Interactable
         if (other.gameObject.GetComponent<Cassette>() != null)
         {
             PlayMusic(MusicTrack.Track.Cassette);
-            OnPlayMusic(other);
-            
+            PlayerController.Instance.Release();
+            Enabled = true;
+
         }
         else if(other.gameObject.GetComponent<Beer>() != null)
         {
             PlayMusic(MusicTrack.Track.Beer);
-            OnPlayMusic(other);
+            PlayerController.Instance.Release();
         }
-    }
-
-    internal void OnPlayMusic(Collider other)
-    {
-        PlayerController.Instance.Release();
-        StartCoroutine(other.gameObject.GetComponent<Interactable>().DestroyAfterSeconds(0.25f));
-        Enabled = true;
     }
 
     public void PlayMusic(MusicTrack.Track Track)

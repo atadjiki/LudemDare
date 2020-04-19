@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour
             if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
             {
                 currentlyGrabbed.transform.localPosition = Vector3.Lerp(currentlyGrabbed.transform.localPosition, Vector3.zero, centerLerp);
-                currentlyGrabbed.transform.localRotation = Quaternion.Lerp(currentlyGrabbed.transform.localRotation, Quaternion.identity, centerLerp);
-                currentlyGrabbed.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+              //  currentlyGrabbed.transform.localRotation = Quaternion.Lerp(currentlyGrabbed.transform.localRotation, Quaternion.identity, centerLerp);
+              //  currentlyGrabbed.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 currentlyGrabbed.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
@@ -98,6 +98,8 @@ public class PlayerController : MonoBehaviour
                 UIManager.Instance.SetDefault();
             }
         }
+
+        Player_Rigidbody.velocity = Player_Rigidbody.velocity * 0.75f;
     }
 
     internal void Interact()
