@@ -49,6 +49,7 @@ public class Boombox : Interactable
         if (other.gameObject.GetComponent<Cassette>() != null)
         {
             PlayMusic(MusicTrack.Track.Cassette);
+            GameState.Instance.PlayingCorrectSong();
             PlayerController.Instance.Release();
             Enabled = true;
 
@@ -56,6 +57,7 @@ public class Boombox : Interactable
         else if(other.gameObject.GetComponent<Beer>() != null)
         {
             PlayMusic(MusicTrack.Track.Beer);
+            GameState.Instance.PlayingIncorrectSong();
             PlayerController.Instance.Release();
         }
     }

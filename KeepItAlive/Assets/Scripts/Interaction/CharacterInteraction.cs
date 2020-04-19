@@ -13,7 +13,8 @@ public class DialogueLine
 public class CharacterInteraction : Interactable
 {
 
-    public List<DialogueLine> Dialogue;
+    public List<DialogueLine> GeneralDialogue;
+
     private int currentIndex;
     private int maxIndex;
 
@@ -27,7 +28,7 @@ public class CharacterInteraction : Interactable
     {
         HasBeer = false;
         currentIndex = 0;
-        maxIndex = Dialogue.Count;
+        maxIndex = GeneralDialogue.Count;
 
         Beer_Rot = new Quaternion(Beer_Rot.x, UnityEngine.Random.Range(0, 360), Beer_Rot.z, 1);
     }
@@ -36,9 +37,9 @@ public class CharacterInteraction : Interactable
     {
         base.Interact();
 
-        if(currentIndex >= 0 && currentIndex < maxIndex && Dialogue.Count > 0)
+        if(currentIndex >= 0 && currentIndex < maxIndex && GeneralDialogue.Count > 0)
         {
-            UIManager.Instance.PresentSubtitles(Dialogue[currentIndex].text, Dialogue[currentIndex].time);
+            UIManager.Instance.PresentSubtitles(GeneralDialogue[currentIndex].text, GeneralDialogue[currentIndex].time);
         }
 
         IncrementIndex();
@@ -75,6 +76,8 @@ public class CharacterInteraction : Interactable
         beer.GetComponent<Rigidbody>().isKinematic = true;
         beer.GetComponent<Collider>().enabled = false;
         beer.transform.parent = this.transform;
+
+        GameState.Instance.IncrementBeers();
 
         StartCoroutine(LerpBeerToHand(beer, 2));
     }
