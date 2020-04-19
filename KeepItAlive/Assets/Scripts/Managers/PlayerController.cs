@@ -172,6 +172,8 @@ public class PlayerController : MonoBehaviour
 
         currentlyGrabbed.transform.SetParent(grabbableOffset.transform);
         UIManager.Instance.SetObjectGrabbed();
+
+        AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.objectPickUp);
     }
 
     internal void Release()
@@ -193,6 +195,8 @@ public class PlayerController : MonoBehaviour
         
         isHolding = false;
         UIManager.Instance.SetObjectReleased();
+
+        AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.objectPutDown);
     }
 
     internal void HandlePitchRoll()

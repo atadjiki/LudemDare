@@ -20,6 +20,13 @@ public class Entry : Interactable
 
     public float playerLerpDelay = 1;
 
+    AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public override void Interact()
     {
         if (InteractedWith)
@@ -32,6 +39,8 @@ public class Entry : Interactable
         InteractedWith = true;
 
         MovePlayerIntoParty();
+
+        audioSource.PlayOneShot(AudioManager.Instance.entry);
     }
 
     private void MovePlayerIntoParty()

@@ -51,6 +51,8 @@ public class Boombox : Interactable
                 right_speaker.Off();
             }
         }
+
+        AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.button);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,22 +79,31 @@ public class Boombox : Interactable
 
     public void PlayMusic(MusicTrack.Track Track)
     {
+        StartCoroutine(DelayThenMusic(Track));
+    }
+
+    IEnumerator DelayThenMusic(MusicTrack.Track Track)
+    {
+        AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.cassetteDeck);
+
+        yield return new WaitForSeconds(AudioManager.Instance.cassetteDeck.length);
+
         GameState.Instance.MusicOn();
         left_speaker.On();
         right_speaker.On();
 
         foreach (MusicTrack track in Music)
         {
-            if(track.track == Track)
+            if (track.track == Track)
             {
                 this.GetComponent<AudioSource>().clip = track.clip;
                 this.GetComponent<AudioSource>().Play();
                 this.GetComponent<AudioSource>().loop = true;
-                return;
+                break;
             }
         }
 
-        foreach(CharacterInteraction c in FindObjectsOfType<CharacterInteraction>())
+        foreach (CharacterInteraction c in FindObjectsOfType<CharacterInteraction>())
         {
             c.CurrentCategory = Constants.Dialogue.Category.Music;
         }

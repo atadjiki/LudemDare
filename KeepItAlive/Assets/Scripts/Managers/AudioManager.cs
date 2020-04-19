@@ -18,6 +18,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip[] Voices;
 
+    public AudioSource audioSource;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -29,6 +31,7 @@ public class AudioManager : MonoBehaviour
             _instance = this;
         }
 
+        audioSource = GetComponent<AudioSource>();
     }
 
 }

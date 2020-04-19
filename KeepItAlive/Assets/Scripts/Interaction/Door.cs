@@ -13,9 +13,12 @@ public class Door : Interactable
     public float closedAngle = 0.0f;
     public float openAngle = -90.0f;
 
+    AudioSource audioSource;
+
     private void Awake()
     {
         DoorTransform = this.transform.parent;
+        audioSource = GetComponent<AudioSource>();
       
     }
 
@@ -26,6 +29,7 @@ public class Door : Interactable
         if (moving == false)
         {
             Toggle();
+            audioSource.PlayOneShot(AudioManager.Instance.fridge);
            // AudioManager.Instance.PlaySoundEffect(this.gameObject, AudioManager.SoundEffect.Door);
         }
     }
