@@ -13,17 +13,17 @@ public class MusicTrack
 [RequireComponent(typeof(AudioSource))]
 public class Boombox : Interactable
 {
-
     private bool Enabled = false;
 
     public List<MusicTrack> Music;
 
     private int CurrentIndex;
 
-    private void Awake()
-    {
-        
-    }
+    private Vector3 Deck_Pos = new Vector3();
+    private Vector3 Deck_Scale = new Vector3();
+    private Quaternion Deck_Rot = new Quaternion();
+
+    public GameObject cassettePrefab;
 
     public override void Interact()
     {
@@ -35,23 +35,27 @@ public class Boombox : Interactable
             if(GetComponent<AudioSource>().mute)
             {
                 GetComponent<AudioSource>().mute = false;
+                GameState.Instance.MusicOn();
             }
             else
             {
                 GetComponent<AudioSource>().mute = true;
+                GameState.Instance.MusicOff();
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.GetComponent<Cassette>() != null)
         {
             PlayMusic(MusicTrack.Track.Cassette);
             GameState.Instance.PlayingCorrectSong();
             PlayerController.Instance.Release();
             Enabled = true;
+            TakeObject(other.gameObject);
+
+            Instantiate<GameObject>(cassettePrefab);
 
         }
         else if(other.gameObject.GetComponent<Beer>() != null)
@@ -59,12 +63,15 @@ public class Boombox : Interactable
             PlayMusic(MusicTrack.Track.Beer);
             GameState.Instance.PlayingIncorrectSong();
             PlayerController.Instance.Release();
+            TakeObject(other.gameObject);
         }
     }
 
     public void PlayMusic(MusicTrack.Track Track)
     {
-        foreach(MusicTrack track in Music)
+        GameState.Instance.MusicOn();
+
+        foreach (MusicTrack track in Music)
         {
             if(track.track == Track)
             {
@@ -74,5 +81,38 @@ public class Boombox : Interactable
                 return;
             }
         }
+
+        foreach(CharacterInteraction c in FindObjectsOfType<CharacterInteraction>())
+        {
+            c.CurrentCategory = Constants.Dialogue.Category.Music;
+        }
+    }
+
+    public void TakeObject(GameObject obj)
+    {
+        obj.GetComponent<Interactable>().enabled = false;
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.GetComponent<Collider>().enabled = false;
+        obj.transform.parent = this.transform;
+
+        StartCoroutine(LerpObjectToDeck(obj, 3));
+    }
+
+    IEnumerator LerpObjectToDeck(GameObject obj, float time)
+    {
+        float currentTime = 0;
+
+        while (currentTime < time)
+        {
+            obj.transform.localPosition = Vector3.Slerp(obj.transform.localPosition, Deck_Pos, currentTime / time);
+            obj.transform.localScale = Vector3.Slerp(obj.transform.localScale, Deck_Scale, currentTime / time);
+            obj.transform.localRotation = Quaternion.Slerp(obj.transform.localRotation, Deck_Rot, currentTime / time);
+
+            currentTime += Time.smoothDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        GameObject.Destroy(obj);
+
     }
 }

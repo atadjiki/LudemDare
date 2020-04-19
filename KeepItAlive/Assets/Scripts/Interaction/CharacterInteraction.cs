@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Constants;
 
 [System.Serializable]
 public class DialogueLine
@@ -12,12 +13,9 @@ public class DialogueLine
 
 public class CharacterInteraction : Interactable
 {
-
-    public List<DialogueLine> GeneralDialogue;
-
-    private int currentIndex;
-    private int maxIndex;
-
+    public Dialogue.Character Character;
+    public Dialogue.Category CurrentCategory;
+    
     private Vector3 Beer_Pos = new Vector3(-0.3f, -0.4f, 0);
     private Quaternion Beer_Rot = new Quaternion(2, 45, 0, 1);
     private Vector3 Beer_Scale = new Vector3(0.25f, 0.25f, 0.25f);
@@ -27,38 +25,75 @@ public class CharacterInteraction : Interactable
     private void Awake()
     {
         HasBeer = false;
-        currentIndex = 0;
-        maxIndex = GeneralDialogue.Count;
 
-        Beer_Rot = new Quaternion(Beer_Rot.x, UnityEngine.Random.Range(0, 360), Beer_Rot.z, 1);
+        Beer_Rot.eulerAngles = new Vector3(0,UnityEngine.Random.Range(0, 360),0);
     }
 
     public override void Interact()
     {
         base.Interact();
 
-        if(currentIndex >= 0 && currentIndex < maxIndex && GeneralDialogue.Count > 0)
-        {
-            UIManager.Instance.PresentSubtitles(GeneralDialogue[currentIndex].text, GeneralDialogue[currentIndex].time);
-        }
+        UIManager.Instance.PresentSubtitles(Dialogue.GetStringByCharacter(Character, GetTypeFromState()), 2);
 
-        IncrementIndex();
+        CurrentCategory = Constants.Dialogue.GetNext(CurrentCategory);
+
+        if(CurrentCategory == Dialogue.Category.MusicTaste && GameState.Instance.IsMusicPlaying() == false)
+        {
+            CurrentCategory = Constants.Dialogue.GetNext(CurrentCategory);
+        }
     }
 
-    private void IncrementIndex()
+    public Dialogue.Type GetTypeFromState()
     {
-        currentIndex++;
-
-        if(currentIndex >= maxIndex)
+        if(CurrentCategory == Dialogue.Category.Greeting)
         {
-            currentIndex = 0;
+            return Dialogue.Type.Greeting;
+        }
+        else if(CurrentCategory == Dialogue.Category.Beer)
+        {
+            if(HasBeer)
+            {
+                return Dialogue.Type.HasBeer;
+            }
+            else
+            {
+                return Dialogue.Type.NeedsBeer;
+            }
+        }
+        else if(CurrentCategory == Dialogue.Category.Music)
+        {
+            if(GameState.Instance.IsMusicPlaying())
+            {
+                return Dialogue.Type.MusicPlaying;
+            }
+            else
+            {
+                return Dialogue.Type.NoMusicPlaying;
+            }
+        }
+        else if(CurrentCategory == Dialogue.Category.MusicTaste)
+        {
+            if(GameState.Instance.IsSongCorrect())
+            {
+                return Dialogue.Type.LikesMusic;
+            }
+            else
+            {
+                return Dialogue.Type.DislikesMusic;
+            }
+        }
+        else if(CurrentCategory == Dialogue.Category.Misc)
+        {
+            return Dialogue.Type.Misc;
+        }
+        else
+        {
+            return 0;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Got Beer");
-
         if (other.gameObject.GetComponent<Beer>() != null && HasBeer == false)
         {
             
@@ -71,6 +106,8 @@ public class CharacterInteraction : Interactable
     public void TakeBeer(GameObject beer)
     {
         HasBeer = true;
+
+        CurrentCategory = Dialogue.Category.Beer;
 
         beer.GetComponent<Beer>().enabled = false;
         beer.GetComponent<Rigidbody>().isKinematic = true;

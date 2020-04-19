@@ -71,6 +71,16 @@ public class GameState : MonoBehaviour
         return GameComplete;
     }
 
+    public bool IsMusicPlaying()
+    {
+        return PlayingMusic;
+    }
+
+    public bool IsSongCorrect()
+    {
+        return PlayingCorrectMusic;
+    }
+
     public void CheckState()
     {
         if(PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
