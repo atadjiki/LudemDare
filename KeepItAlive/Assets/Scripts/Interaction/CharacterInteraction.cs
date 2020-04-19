@@ -44,4 +44,13 @@ public class CharacterInteraction : Interactable
             currentIndex = 0;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<Beer>() != null)
+        {
+            PlayerController.Instance.Release();
+            StartCoroutine(other.gameObject.GetComponent<Interactable>().DestroyAfterSeconds(0.25f));
+        }
+    }
 }

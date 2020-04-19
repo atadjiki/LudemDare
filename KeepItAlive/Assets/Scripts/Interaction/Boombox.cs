@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class MusicTrack
 {
-    public enum Track { Cassette, Cat, Lamp };
+    public enum Track { Cassette, Cat, Lamp, Beer };
     public Track track;
     public AudioClip clip;
 }
@@ -48,10 +48,21 @@ public class Boombox : Interactable
         if (other.gameObject.GetComponent<Cassette>() != null)
         {
             PlayMusic(MusicTrack.Track.Cassette);
-            PlayerController.Instance.Release();
-            StartCoroutine(other.gameObject.GetComponent<Cassette>().DestroyAfterSeconds(0.25f));
-            Enabled = true;
+            OnPlayMusic(other);
+            
         }
+        else if(other.gameObject.GetComponent<Beer>() != null)
+        {
+            PlayMusic(MusicTrack.Track.Beer);
+            OnPlayMusic(other);
+        }
+    }
+
+    internal void OnPlayMusic(Collider other)
+    {
+        PlayerController.Instance.Release();
+        StartCoroutine(other.gameObject.GetComponent<Interactable>().DestroyAfterSeconds(0.25f));
+        Enabled = true;
     }
 
     public void PlayMusic(MusicTrack.Track Track)
