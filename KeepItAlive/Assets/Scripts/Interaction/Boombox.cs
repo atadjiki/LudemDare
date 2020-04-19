@@ -18,19 +18,39 @@ public class Boombox : Interactable
 
     public List<MusicTrack> Music;
 
+    private int CurrentIndex;
+
     private void Awake()
     {
         
+    }
+
+    public override void Interact()
+    {
+        base.Interact();
+
+        if (Enabled)
+        {
+
+            if(GetComponent<AudioSource>().mute)
+            {
+                GetComponent<AudioSource>().mute = false;
+            }
+            else
+            {
+                GetComponent<AudioSource>().mute = true;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Cassette>() != null)
         {
-            Debug.Log("Collided with cassette");
             PlayMusic(MusicTrack.Track.Cassette);
             PlayerController.Instance.Release();
             StartCoroutine(other.gameObject.GetComponent<Cassette>().DestroyAfterSeconds(0.25f));
+            Enabled = true;
         }
     }
 
