@@ -50,6 +50,8 @@ public class CharacterInteraction : Interactable
         {
             CurrentCategory = Constants.Dialogue.GetNext(CurrentCategory);
         }
+
+        audioSource.PlayOneShot(AudioManager.Instance.Voices[0]);
     }
 
     public Dialogue.Type GetTypeFromState()
@@ -109,6 +111,9 @@ public class CharacterInteraction : Interactable
             PlayerController.Instance.Release();
 
             TakeBeer(other.gameObject);
+
+            audioSource.PlayOneShot(AudioManager.Instance.beer);
+
         }
     }
 
