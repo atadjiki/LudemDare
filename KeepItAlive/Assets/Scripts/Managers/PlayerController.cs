@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody), typeof(Camera))]
@@ -131,8 +133,12 @@ public class PlayerController : MonoBehaviour
                     if (isHolding == false)
                     {
                         Grab(hit.transform.gameObject.GetComponent<Grabbable>());
-                    }
 
+                        if(hit.transform.gameObject.GetComponent<Beer>())
+                        {
+                            ShrinkBeer(hit.transform.gameObject);
+                        }
+                    }
                 }
                 else if (hit.transform.gameObject.GetComponent<CharacterInteraction>())
                 {
@@ -157,6 +163,27 @@ public class PlayerController : MonoBehaviour
         else if (isHolding)
         {
             Release();
+        }
+    }
+
+    private void ShrinkBeer(GameObject gameObject)
+    {
+        StartCoroutine(ShrinkBeerOverTime(gameObject, 1f));
+    }
+
+    IEnumerator ShrinkBeerOverTime(GameObject obj, float time)
+    {
+        float currentTime = 0;
+        Vector3 initialScale = obj.transform.localScale;
+
+        while(currentTime < time)
+        {
+
+            obj.transform.localScale = Vector3.Slerp(initialScale, new Vector3(0.5f, 0.5f, 0.5f), currentTime / time);
+
+            currentTime += Time.smoothDeltaTime;
+
+            yield return null;
         }
     }
 
