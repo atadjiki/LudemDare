@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions Actions;
     private Camera PlayerCamera;
 
+    private Vector3 PreviousPosition;
+
     public static PlayerController Instance { get { return _instance; } }
 
     private void Awake()
@@ -55,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        PreviousPosition = Player_Rigidbody.position;
+
         HandlePitchRoll();
         HandleYaw();
         HandleLateral();
@@ -118,6 +122,10 @@ public class PlayerController : MonoBehaviour
                 {
                     hit.transform.gameObject.GetComponent<CharacterInteraction>().Interact();
                 }
+                else if(hit.transform.gameObject.GetComponent<Boombox>())
+                {
+                    hit.transform.gameObject.GetComponent<Boombox>().Interact();
+                }
 
 
             }
@@ -135,6 +143,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
         {
+            currentlyGrabbed.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
 
         currentlyGrabbed.transform.SetParent(grabbableOffset.transform);
@@ -143,17 +152,21 @@ public class PlayerController : MonoBehaviour
 
     internal void Release()
     {
-        Debug.Log("Releasing " + currentlyGrabbed.name);
-
-        currentlyGrabbed.transform.SetParent(null);
-
-        if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
+        if(currentlyGrabbed != null)
         {
-            currentlyGrabbed.gameObject.GetComponent<Rigidbody>().AddForce(Player_Rigidbody.velocity * 10);
-            Debug.Log(Player_Rigidbody.velocity * 10);
-        }
+            currentlyGrabbed.transform.SetParent(null);
 
-        currentlyGrabbed = null;
+            Vector3 childVelocity = (Player_Rigidbody.position - PreviousPosition) / Time.fixedDeltaTime;  // velocity = dist/time
+
+            if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
+            {
+                currentlyGrabbed.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                currentlyGrabbed.gameObject.GetComponent<Rigidbody>().velocity = childVelocity;
+            }
+
+            currentlyGrabbed = null;
+        }
+        
         isHolding = false;
         UIManager.Instance.SetObjectReleased();
     }
