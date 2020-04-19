@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 3196613103833682704}
   - component: {fileID: 3196613103833682705}
   - component: {fileID: 3196613103833682706}
+  - component: {fileID: 46712798}
   m_Layer: 0
   m_Name: Character_01
   m_TagString: Untagged
@@ -303,14 +304,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3196613103833682733}
-  m_LocalRotation: {x: -0.06291489, y: 0.075966395, z: 0.0048028952, w: 0.99511194}
+  m_LocalRotation: {x: -0.06291221, y: 0.07596696, z: 0.0048027253, w: 0.99511206}
   m_LocalPosition: {x: 0.49, y: 0.9700001, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3196613102536440618}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.49400002, y: 12.118001, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.235, y: 8.731, z: 0}
 --- !u!114 &3196613103833682735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,9 +366,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc9312c162d89147bcc7e19a7a7b5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialogue:
-  - text: this music sucks!
-    time: 1
-  Beer_Pos: {x: -0.3, y: -0.4, z: 0}
-  Beer_Rot: {x: 2, y: 45, z: 0, w: 1}
-  Beer_Scale: {x: 0.25, y: 0.25, z: 0.25}
+  GeneralDialogue: []
+--- !u!65 &46712798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196613103833682733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

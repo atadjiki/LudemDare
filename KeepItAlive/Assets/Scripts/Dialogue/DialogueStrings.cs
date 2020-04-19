@@ -7,23 +7,25 @@
 
         public string GetStringByCharacter(Character character, Type type)
         {
+            string result = "";
+
             if (character == Character.One)
             {
                 if (type == Type.Greeting)
                 {
-
+                    result = "what's up dog?";
                 }
                 else if (type == Type.Misc)
                 {
-
+                    result = "'joker' should have won an oscar";
                 }
                 else if (type == Type.HasBeer)
                 {
-
+                    result = "what is this, 'beer'?";
                 }
                 else if (type == Type.NeedsBeer)
                 {
-
+                    result = "";
                 }
                 else if (type == Type.NoMusicPlaying)
                 {
@@ -78,7 +80,7 @@
                 }
             }
 
-            return "";
+            return result.ToLower().Trim();
         }
     }
 }
