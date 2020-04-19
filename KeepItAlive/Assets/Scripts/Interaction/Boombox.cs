@@ -46,14 +46,14 @@ public class Boombox : Interactable
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.GetComponent<Cassette>() != null && PlayerController.Instance.IsHoldingObject(other.gameObject) == false)
+        if (other.gameObject.GetComponent<Cassette>() != null)
         {
             PlayMusic(MusicTrack.Track.Cassette);
             PlayerController.Instance.Release();
             Enabled = true;
 
         }
-        else if(other.gameObject.GetComponent<Beer>() != null && PlayerController.Instance.IsHoldingObject(other.gameObject) == false)
+        else if(other.gameObject.GetComponent<Beer>() != null)
         {
             PlayMusic(MusicTrack.Track.Beer);
             PlayerController.Instance.Release();
