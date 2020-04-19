@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Constants;
+using TMPro;
 
 [System.Serializable]
 public class DialogueLine
@@ -21,6 +22,10 @@ public class CharacterInteraction : Interactable
     private Vector3 Beer_Scale = new Vector3(0.25f, 0.25f, 0.25f);
 
     private bool HasBeer;
+    private bool Talking;
+
+    public GameObject SpeechBubble;
+    public TextMeshProUGUI SpeechText;
 
     private void Awake()
     {
@@ -33,7 +38,7 @@ public class CharacterInteraction : Interactable
     {
         base.Interact();
 
-        UIManager.Instance.PresentSubtitles(Dialogue.GetStringByCharacter(Character, GetTypeFromState()), 2);
+        PresentDialogue(Dialogue.GetStringByCharacter(Character, GetTypeFromState()), 2);
 
         CurrentCategory = Constants.Dialogue.GetNext(CurrentCategory);
 
@@ -132,5 +137,30 @@ public class CharacterInteraction : Interactable
             currentTime += Time.smoothDeltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public void PresentDialogue(string text, float time)
+    {
+        if (Talking == false)
+        {
+            StartCoroutine(ShowDialogueForTime(text, time));
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(ShowDialogueForTime(text, time));
+        }
+
+    }
+
+    private IEnumerator ShowDialogueForTime(string text, float time)
+    {
+        Talking = true;
+        SpeechText.text = text;
+        SpeechBubble.SetActive(true);
+        yield return new WaitForSeconds(time);
+        SpeechBubble.SetActive(false);
+        SpeechText.text = "";
+        Talking = false;
     }
 }
