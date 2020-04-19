@@ -25,6 +25,9 @@ public class Boombox : Interactable
 
     public GameObject cassettePrefab;
 
+    public BumpinStereoSpeakers left_speaker;
+    public BumpinStereoSpeakers right_speaker;
+
     public override void Interact()
     {
         base.Interact();
@@ -36,11 +39,16 @@ public class Boombox : Interactable
             {
                 GetComponent<AudioSource>().mute = false;
                 GameState.Instance.MusicOn();
+                left_speaker.On();
+                right_speaker.On();
+                
             }
             else
             {
                 GetComponent<AudioSource>().mute = true;
                 GameState.Instance.MusicOff();
+                left_speaker.Off();
+                right_speaker.Off();
             }
         }
     }
@@ -70,6 +78,8 @@ public class Boombox : Interactable
     public void PlayMusic(MusicTrack.Track Track)
     {
         GameState.Instance.MusicOn();
+        left_speaker.On();
+        right_speaker.On();
 
         foreach (MusicTrack track in Music)
         {

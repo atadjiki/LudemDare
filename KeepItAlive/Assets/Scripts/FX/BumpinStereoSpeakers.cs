@@ -11,7 +11,17 @@ public class BumpinStereoSpeakers : MonoBehaviour
 
     private void Start()
     {
+    }
+
+    public void On()
+    {
         StartCoroutine(Bump());
+    }
+
+    public void Off()
+    {
+        StopAllCoroutines();
+        _soundBolts.Stop();
     }
 
     private IEnumerator Bump()

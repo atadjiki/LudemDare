@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static AudioManager _instance;
+
+    public static AudioManager Instance { get { return _instance; } }
+
+    public AudioClip beer;
+    public AudioClip objectPickUp;
+    public AudioClip objectPutDown;
+    public AudioClip entry;
+    public AudioClip fridge;
+    public AudioClip cassetteDeck;
+    public AudioClip button;
+
+    public AudioClip[] Voices;
+
+    private void Awake()
     {
-        
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

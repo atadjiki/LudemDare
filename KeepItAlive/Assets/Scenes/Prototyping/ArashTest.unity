@@ -617,6 +617,18 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 7294010056739535901}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818413851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9021481909729218372, guid: eade9e9d24f95c248be53e34e14346ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 9000152280931504306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec18da7b62e432d4984966b79cea0152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877375436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1098,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 662560756}
     m_Modifications:
+    - target: {fileID: 3616868185612105532, guid: eade9e9d24f95c248be53e34e14346ee,
+        type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 1818413851}
     - target: {fileID: 9000152282655666898, guid: eade9e9d24f95c248be53e34e14346ee,
         type: 3}
       propertyPath: m_LocalPosition.x

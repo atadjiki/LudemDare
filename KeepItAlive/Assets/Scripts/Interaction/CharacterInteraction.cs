@@ -27,11 +27,15 @@ public class CharacterInteraction : Interactable
     public GameObject SpeechBubble;
     public TextMeshProUGUI SpeechText;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         HasBeer = false;
 
         Beer_Rot.eulerAngles = new Vector3(0,UnityEngine.Random.Range(0, 360),0);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Interact()
