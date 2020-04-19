@@ -10149,6 +10149,12 @@ PrefabInstance:
       propertyPath: Music.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: e32766fe771887b4f8887ef67d013df4, type: 3}
+    - target: {fileID: 5681084921883710411, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: cassettePrefab
+      value: 
+      objectReference: {fileID: 5745722154026916577, guid: dfd8dd11ef236604eb52e3e038deb0fe,
+        type: 3}
     - target: {fileID: 5681084921883710412, guid: fc8ad729c7d1c6546a3246def7f4a964,
         type: 3}
       propertyPath: m_Name

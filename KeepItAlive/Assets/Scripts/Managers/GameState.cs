@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
+
+    public enum Phase { Start, Game, End };
+    public Phase CurrentPhase;
+
     private static GameState _instance;
 
     public static GameState Instance { get { return _instance; } }
@@ -14,7 +18,6 @@ public class GameState : MonoBehaviour
     private int HandedOutBeers = 0;
     private int GuestCount;
 
-    private bool GameComplete;
 
     private void Awake()
     {
@@ -26,11 +29,13 @@ public class GameState : MonoBehaviour
         {
             _instance = this;
         }
+
+        CurrentPhase = Phase.Start;
     }
 
     private void Update()
     {
-        if(GameComplete == false)
+        if(CurrentPhase == Phase.Game)
         {
             CheckState();
         }
@@ -68,7 +73,7 @@ public class GameState : MonoBehaviour
 
     public bool IsGameComplete()
     {
-        return GameComplete;
+        return (CurrentPhase == Phase.End);
     }
 
     public bool IsMusicPlaying()
@@ -85,7 +90,7 @@ public class GameState : MonoBehaviour
     {
         if(PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
         {
-            GameComplete = true;
+            
         }
     }
 }

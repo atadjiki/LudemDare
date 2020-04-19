@@ -146,6 +146,10 @@ public class PlayerController : MonoBehaviour
                 {
                     hit.transform.gameObject.GetComponent<Door>().Interact();
                 }
+                else if(hit.transform.gameObject.GetComponent<Entry>())
+                {
+                    hit.transform.gameObject.GetComponent<Entry>().Interact();
+                }
 
 
             }
@@ -239,5 +243,17 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPosition = Vector3.Slerp(Player_Rigidbody.position, Player_Rigidbody.position + PlayerCamera.transform.TransformDirection(deltaPosition), Time.fixedDeltaTime * Lerp_Move);
 
         Player_Rigidbody.MovePosition(targetPosition);
+    }
+
+    public void ToggleControls(bool flag)
+    {
+        if(flag)
+        {
+            Actions.Enable();
+        }
+        else
+        {
+            Actions.Disable();
+        }
     }
 }
