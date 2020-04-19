@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
         Actions = new PlayerInputActions();
         PlayerCamera = GetComponent<Camera>();
 
+        Cursor.visible = false;
+
         Actions.Player.Interact.performed += ctx => Interact();
 
         Actions.Enable();
