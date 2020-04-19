@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class UIManager : MonoBehaviour
     public RawImage crosshair;
     public GameObject pre_interact_text;
     public GameObject during_interact_text;
+
+    public GameObject subtitles_panel;
+    public TextMeshProUGUI subtitle_text;
+    private bool showing_subtitles;
 
     private static UIManager _instance;
 
@@ -24,6 +29,11 @@ public class UIManager : MonoBehaviour
         {
             _instance = this;
         }
+    }
+
+    public bool SubtitlesShowing()
+    {
+        return showing_subtitles;
     }
 
     private void ToggleCrosshair(bool flag)
@@ -55,5 +65,30 @@ public class UIManager : MonoBehaviour
     public void SetObjectReleased()
     {
         ToggleCrosshair(true);
+    }
+
+    public void PresentSubtitles(string text, float time)
+    {
+        if(showing_subtitles == false)
+        {
+            StartCoroutine(ShowSubtitlesForTime(text, time));
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(ShowSubtitlesForTime(text, time));
+        }
+        
+    }
+
+    private IEnumerator ShowSubtitlesForTime(string text, float time)
+    {
+        showing_subtitles = true;
+        subtitle_text.text = text;
+        subtitles_panel.SetActive(true);
+        yield return new WaitForSeconds(time);
+        subtitles_panel.SetActive(false);
+        subtitle_text.text = "";
+        showing_subtitles = false;
     }
 }

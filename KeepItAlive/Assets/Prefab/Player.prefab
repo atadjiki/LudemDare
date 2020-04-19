@@ -217,8 +217,10 @@ MonoBehaviour:
   Speed_Yaw: 50
   Speed_Vertical: 10
   Speed_Lateral: 10
-  grabbableOffset: {fileID: 0}
-  interactDistance: 1
+  Lerp_Rotate: 50
+  Lerp_Move: 15
+  grabbableOffset: {fileID: 9066884581449222799}
+  interactDistance: 10
   centerLerp: 0.01
 --- !u!114 &6136363777397565345
 MonoBehaviour:
