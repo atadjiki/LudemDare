@@ -841,6 +841,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1233751954}
   - component: {fileID: 1233751955}
+  - component: {fileID: 1233751957}
+  - component: {fileID: 1233751956}
   m_Layer: 0
   m_Name: Lamp
   m_TagString: Untagged
@@ -879,6 +881,34 @@ CapsuleCollider:
   m_Height: 3.48
   m_Direction: 1
   m_Center: {x: 0, y: 1.48, z: 0}
+--- !u!54 &1233751956
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233751953}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0.75
+  m_AngularDrag: 0.75
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1233751957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233751953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffaae0c761edaad4b9f89313c7dc7712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1248740200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1054,28 +1084,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1922862639 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 565887568072044140, guid: 13c97d006e8a45041b7e20ad7c660f80,
-    type: 3}
-  m_PrefabInstance: {fileID: 8429474788659188959}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1922862640
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922862639}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.5
-  m_AngularDrag: 0.5
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1936256341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,7 +1259,7 @@ PrefabInstance:
     - target: {fileID: 1983466470597628182, guid: 587eff74d2a6c294183dc6f9cec7b5cd,
         type: 3}
       propertyPath: interactDistance
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1983466470597628182, guid: 587eff74d2a6c294183dc6f9cec7b5cd,
         type: 3}
@@ -1401,36 +1409,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 662560756}
     m_Modifications:
-    - target: {fileID: 3616868185612105532, guid: eade9e9d24f95c248be53e34e14346ee,
-        type: 3}
-      propertyPath: Music.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616868185612105532, guid: eade9e9d24f95c248be53e34e14346ee,
-        type: 3}
-      propertyPath: Music.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: e32766fe771887b4f8887ef67d013df4, type: 3}
-    - target: {fileID: 3616868185612105532, guid: eade9e9d24f95c248be53e34e14346ee,
-        type: 3}
-      propertyPath: Music.Array.data[1].track
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616868185612105532, guid: eade9e9d24f95c248be53e34e14346ee,
-        type: 3}
-      propertyPath: Music.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 62369d5b32e67ed4393342c084cc0ec0, type: 3}
-    - target: {fileID: 3616868185612105535, guid: eade9e9d24f95c248be53e34e14346ee,
-        type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3616868185612105535, guid: eade9e9d24f95c248be53e34e14346ee,
-        type: 3}
-      propertyPath: DopplerLevel
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 9000152282655666898, guid: eade9e9d24f95c248be53e34e14346ee,
         type: 3}
       propertyPath: m_LocalPosition.x

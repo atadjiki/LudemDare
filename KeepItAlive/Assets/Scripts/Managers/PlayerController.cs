@@ -102,6 +102,18 @@ public class PlayerController : MonoBehaviour
         Player_Rigidbody.velocity = Player_Rigidbody.velocity * 0.75f;
     }
 
+    public bool IsHoldingObject(GameObject obj)
+    {
+        if(isHolding && ReferenceEquals(obj, currentlyGrabbed.gameObject))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     internal void Interact()
     {
 
@@ -149,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
         {
-            currentlyGrabbed.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+         //   currentlyGrabbed.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
 
         currentlyGrabbed.transform.SetParent(grabbableOffset.transform);

@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9000152282655666925}
-  m_LocalRotation: {x: -0.36877844, y: 0.11911776, z: -0.87722653, w: 0.28334978}
+  m_LocalRotation: {x: -0.36877853, y: 0.11911933, z: -0.8772252, w: 0.28335294}
   m_LocalPosition: {x: -7.06, y: 2.38, z: -2.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -136,6 +136,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9000152282655666898}
     m_Modifications:
+    - target: {fileID: 5681084921883710408, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710408, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710408, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710408, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710408, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710408, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.5916672
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710411, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: Music.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710411, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: Music.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 62369d5b32e67ed4393342c084cc0ec0, type: 3}
+    - target: {fileID: 5681084921883710411, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: Music.Array.data[1].track
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681084921883710411, guid: fc8ad729c7d1c6546a3246def7f4a964,
+        type: 3}
+      propertyPath: Music.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e32766fe771887b4f8887ef67d013df4, type: 3}
     - target: {fileID: 5681084921883710412, guid: fc8ad729c7d1c6546a3246def7f4a964,
         type: 3}
       propertyPath: m_Name

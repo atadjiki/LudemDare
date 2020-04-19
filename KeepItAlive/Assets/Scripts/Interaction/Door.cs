@@ -16,6 +16,7 @@ public class Door : Interactable
     private void Awake()
     {
         DoorTransform = this.transform.parent;
+      
     }
 
     public override void Interact()
@@ -65,6 +66,11 @@ public class Door : Interactable
         }
 
         moving = false;
+    }
+
+    public bool IsOpen()
+    {
+        return opened;
     }
 }
 
