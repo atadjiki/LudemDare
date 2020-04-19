@@ -34,4 +34,20 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public AudioClip GetVoice(Constants.Dialogue.Character character)
+    {
+        if(character == Constants.Dialogue.Character.One)
+        {
+            return Voices[0];
+        }
+        else if(character == Constants.Dialogue.Character.Two)
+        {
+            return Voices[1];
+        }
+        else
+        {
+            return Voices[0];
+        }
+    }
+
 }

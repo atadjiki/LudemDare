@@ -532,6 +532,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7451855174878514371, guid: d78f5994db780434282823eb02d2ebf5,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451855174878514371, guid: d78f5994db780434282823eb02d2ebf5,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d78f5994db780434282823eb02d2ebf5, type: 3}
 --- !u!1001 &1248740200
@@ -541,6 +551,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1818775672, guid: 15881e3ccf7a46b4eafe1696a48654e2, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1818775673}
     - target: {fileID: 2417262815975114873, guid: 15881e3ccf7a46b4eafe1696a48654e2,
         type: 3}
       propertyPath: m_Name
@@ -603,6 +617,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15881e3ccf7a46b4eafe1696a48654e2, type: 3}
+--- !u!82 &1818775673 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1818775671, guid: 15881e3ccf7a46b4eafe1696a48654e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1248740200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1877375436
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +721,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700731875551544457, guid: 63f09a681f90ef944b3df10fe355ff7c,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700731875551544457, guid: 63f09a681f90ef944b3df10fe355ff7c,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f09a681f90ef944b3df10fe355ff7c, type: 3}

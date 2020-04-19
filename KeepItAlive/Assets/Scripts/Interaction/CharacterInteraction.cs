@@ -51,7 +51,11 @@ public class CharacterInteraction : Interactable
             CurrentCategory = Constants.Dialogue.GetNext(CurrentCategory);
         }
 
-        audioSource.PlayOneShot(AudioManager.Instance.Voices[0]);
+        if(audioSource.isPlaying == false)
+        {
+            audioSource.PlayOneShot(AudioManager.Instance.GetVoice(Character));
+        }
+        
     }
 
     public Dialogue.Type GetTypeFromState()

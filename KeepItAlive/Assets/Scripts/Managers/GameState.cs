@@ -48,11 +48,13 @@ public class GameState : MonoBehaviour
 
     public void MusicOn()
     {
+        UIManager.Instance.PresentSubtitles("Music On! Vibe Increased!", 2);
         PlayingMusic = true;
     }
 
     public void MusicOff()
     {
+        UIManager.Instance.PresentSubtitles("Vibe Down!", 2);
         PlayingMusic = false;
     }
 
@@ -69,6 +71,8 @@ public class GameState : MonoBehaviour
     public void IncrementBeers()
     {
         HandedOutBeers++;
+        GuestCount = FindObjectsOfType<CharacterInteraction>().Length;
+        UIManager.Instance.PresentSubtitles("Beers Handed Out: " + HandedOutBeers + "/" + GuestCount, 2);
     }
 
     public bool IsGameComplete()
@@ -88,9 +92,11 @@ public class GameState : MonoBehaviour
 
     public void CheckState()
     {
-        if(PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
+        GuestCount = FindObjectsOfType<CharacterInteraction>().Length;
+
+        if (PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
         {
-            
+            UIManager.Instance.PresentSubtitles("Vibe Achieved! You're a Party Animal!", 10);
         }
     }
 }

@@ -41,6 +41,8 @@ public class Entry : Interactable
         MovePlayerIntoParty();
 
         audioSource.PlayOneShot(AudioManager.Instance.entry);
+
+        GameState.Instance.CurrentPhase = GameState.Phase.Game;
     }
 
     private void MovePlayerIntoParty()
