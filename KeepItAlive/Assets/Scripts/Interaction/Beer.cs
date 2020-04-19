@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cassette : Grabbable
+public class Beer : Grabbable
 {
-
 }

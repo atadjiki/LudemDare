@@ -126,6 +126,10 @@ public class PlayerController : MonoBehaviour
                 {
                     hit.transform.gameObject.GetComponent<Boombox>().Interact();
                 }
+                else if(hit.transform.gameObject.GetComponent<Door>())
+                {
+                    hit.transform.gameObject.GetComponent<Door>().Interact();
+                }
 
 
             }
