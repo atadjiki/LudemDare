@@ -53,8 +53,13 @@ public class PlayerController : MonoBehaviour
         Actions.Enable();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        HandlePitchRoll();
+        HandleYaw();
+        HandleLateral();
+        HandleVertical();
+
         if (isHolding)
         {
             if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
@@ -65,11 +70,11 @@ public class PlayerController : MonoBehaviour
                 currentlyGrabbed.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
-        else if(UIManager.Instance.SubtitlesShowing())
+        else if (UIManager.Instance.SubtitlesShowing())
         {
             UIManager.Instance.SetDefault();
         }
-        else 
+        else
         {
             Ray ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
             RaycastHit hit;
@@ -89,14 +94,6 @@ public class PlayerController : MonoBehaviour
                 UIManager.Instance.SetDefault();
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        HandlePitchRoll();
-        HandleYaw();
-        HandleLateral();
-        HandleVertical();
     }
 
     internal void Interact()
@@ -129,10 +126,6 @@ public class PlayerController : MonoBehaviour
         {
             Release();
         }
-        else
-        {
-            Debug.Log("Did not hit any objects");
-        }
     }
 
     internal void Grab(Grabbable target)
@@ -142,7 +135,6 @@ public class PlayerController : MonoBehaviour
 
         if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
         {
-            currentlyGrabbed.gameObject.GetComponent<Rigidbody>().useGravity = false;
         }
 
         currentlyGrabbed.transform.SetParent(grabbableOffset.transform);
@@ -153,12 +145,13 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Releasing " + currentlyGrabbed.name);
 
+        currentlyGrabbed.transform.SetParent(null);
+
         if (currentlyGrabbed.gameObject.GetComponent<Rigidbody>() != null)
         {
-            currentlyGrabbed.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            currentlyGrabbed.gameObject.GetComponent<Rigidbody>().AddForce(Player_Rigidbody.velocity * 10);
+            Debug.Log(Player_Rigidbody.velocity * 10);
         }
-
-        currentlyGrabbed.transform.SetParent(null);
 
         currentlyGrabbed = null;
         isHolding = false;
