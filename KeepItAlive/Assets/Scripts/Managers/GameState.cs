@@ -48,13 +48,12 @@ public class GameState : MonoBehaviour
 
     public void MusicOn()
     {
-        UIManager.Instance.PresentSubtitles("Music On! Vibe Increased!", 2);
+        UIManager.Instance.PresentSubtitles("music on! vibe increased!", 2);
         PlayingMusic = true;
     }
 
     public void MusicOff()
     {
-        UIManager.Instance.PresentSubtitles("Vibe Down!", 2);
         PlayingMusic = false;
     }
 
@@ -72,7 +71,16 @@ public class GameState : MonoBehaviour
     {
         HandedOutBeers++;
         GuestCount = FindObjectsOfType<CharacterInteraction>().Length;
-        UIManager.Instance.PresentSubtitles("Beers Handed Out: " + HandedOutBeers + "/" + GuestCount, 2);
+
+        if(HandedOutBeers == GuestCount)
+        {
+            UIManager.Instance.PresentSubtitles("everybody has a beer! good job!", 2);
+        }
+        else
+        {
+            UIManager.Instance.PresentSubtitles("beers handed out: " + HandedOutBeers + "/" + GuestCount, 2);
+        }
+        
     }
 
     public bool IsGameComplete()
@@ -92,11 +100,17 @@ public class GameState : MonoBehaviour
 
     public void CheckState()
     {
-        GuestCount = FindObjectsOfType<CharacterInteraction>().Length;
-
-        if (PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
+        if(CurrentPhase == Phase.Game)
         {
-            UIManager.Instance.PresentSubtitles("Vibe Achieved! You're a Party Animal!", 10);
+            GuestCount = FindObjectsOfType<CharacterInteraction>().Length;
+
+            if (PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
+            {
+                UIManager.Instance.PresentSubtitles("vibe achieved! you're a party animal!", 5);
+            }
+
+            CurrentPhase = Phase.End;
         }
+        
     }
 }
