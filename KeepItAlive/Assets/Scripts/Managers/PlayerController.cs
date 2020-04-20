@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 PreviousPosition;
 
+    public PlayerHandController _playerHandController;
+
     public static PlayerController Instance { get { return _instance; } }
 
     private void Awake()
@@ -201,6 +203,8 @@ public class PlayerController : MonoBehaviour
         UIManager.Instance.SetObjectGrabbed();
 
         AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.objectPickUp);
+
+        _playerHandController.Grab();
     }
 
     internal void Release()
@@ -224,6 +228,8 @@ public class PlayerController : MonoBehaviour
         UIManager.Instance.SetObjectReleased();
 
         AudioManager.Instance.audioSource.PlayOneShot(AudioManager.Instance.objectPutDown);
+
+        _playerHandController.Release();
     }
 
     internal void HandlePitchRoll()

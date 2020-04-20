@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class CharacterBillboardController : MonoBehaviour
 {
+    private Vector3 _upVector;
+
+    private void Start()
+    {
+        _upVector = transform.up;
+    }
+
     private void Update()
     {
-        transform.LookAt(Camera.main.transform.position, Vector3.up);
+        transform.LookAt(Camera.main.transform.position, _upVector);
     }
 }
