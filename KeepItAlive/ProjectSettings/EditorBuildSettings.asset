@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Prototyping/DrewTest.unity
+    guid: 5af8e16948727294bb27868e81876b3f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ef5cbeb44ec684b4fae645b9cce759e6,
       type: 2}

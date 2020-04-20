@@ -63,6 +63,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(Actions.Player.Menu.triggered)
+        {
+            UIManager.Instance.ToggleControlsPanel();
+        }
+
         PreviousPosition = Player_Rigidbody.position;
 
         HandlePitchRoll();

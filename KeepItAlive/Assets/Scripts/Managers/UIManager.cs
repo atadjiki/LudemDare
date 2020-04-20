@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI subtitle_text;
     private bool showing_subtitles;
 
+    public GameObject ControlsPanel;
+
     public Image FadePanel;
 
     private static UIManager _instance;
@@ -33,7 +35,8 @@ public class UIManager : MonoBehaviour
         }
 
         FadePanel.gameObject.SetActive(true);
-        FadeCamera(false, 10);
+        FadeCamera(false, 5);
+       
     }
 
     public bool SubtitlesShowing()
@@ -125,5 +128,17 @@ public class UIManager : MonoBehaviour
 
             yield return null;
         }    
+    }
+
+    public void ToggleControlsPanel()
+    {
+        if(ControlsPanel.activeSelf)
+        {
+            ControlsPanel.SetActive(false);
+        }
+        else
+        {
+            ControlsPanel.SetActive(true);
+        }
     }
 }

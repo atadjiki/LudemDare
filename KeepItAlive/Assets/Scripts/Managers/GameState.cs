@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -33,16 +34,11 @@ public class GameState : MonoBehaviour
             _instance = this;
         }
 
-        CurrentPhase = Phase.Start;
+        CurrentPhase = Phase.Game;
 
         Characters = new HashSet<Constants.Dialogue.Character>();
-    }
 
-    IEnumerator StartBlackThenFade()
-    {
-        
-        yield return new WaitForSeconds(3);
-        UIManager.Instance.FadeCamera(false, 3);
+
     }
 
     public Constants.Dialogue.Character RegisterCharacter()
@@ -76,6 +72,15 @@ public class GameState : MonoBehaviour
         if(CurrentPhase == Phase.Game)
         {
             CheckState();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -145,9 +150,11 @@ public class GameState : MonoBehaviour
             if (PlayingCorrectMusic && PlayingMusic && HandedOutBeers >= GuestCount)
             {
                 UIManager.Instance.PresentSubtitles("vibe achieved! you're a party animal!", 5);
+
+                CurrentPhase = Phase.End;
             }
 
-            CurrentPhase = Phase.End;
+            
         }
         
     }
