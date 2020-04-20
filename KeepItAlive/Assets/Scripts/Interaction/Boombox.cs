@@ -23,6 +23,8 @@ public class Boombox : Interactable
     private Vector3 Deck_Scale = new Vector3();
     private Quaternion Deck_Rot = new Quaternion();
 
+    public Transform Initial_Cassette;
+
     private Vector3 Cassette_Pos = new Vector3();
     private Quaternion Cassette_Rot = new Quaternion();
 
@@ -33,8 +35,8 @@ public class Boombox : Interactable
 
     private void Awake()
     {
-        Cassette_Pos = cassettePrefab.transform.position;
-        Cassette_Rot = cassettePrefab.transform.rotation;
+        Cassette_Pos = Initial_Cassette.position;
+        Cassette_Rot = Initial_Cassette.rotation;
     }
 
     public override void Interact()
@@ -74,7 +76,9 @@ public class Boombox : Interactable
             Enabled = true;
             TakeObject(other.gameObject);
 
-            Instantiate<GameObject>(cassettePrefab, Cassette_Pos, Cassette_Rot);
+            GameObject newCassette = Instantiate<GameObject>(cassettePrefab, Cassette_Pos, Cassette_Rot);
+            newCassette.GetComponent<Rigidbody>().isKinematic = false;
+            newCassette.GetComponent<Collider>().enabled = true;
 
         }
         else if(other.gameObject.GetComponent<Beer>() != null)
