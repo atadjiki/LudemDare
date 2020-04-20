@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8584219862685922553}
+  - component: {fileID: 5886041182017344284}
   m_Layer: 0
   m_Name: KitchenCounter
   m_TagString: Untagged
@@ -23,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8584219862685922554}
-  m_LocalRotation: {x: 0.050043277, y: 0.47270754, z: -0.29511592, w: 0.82882434}
+  m_LocalRotation: {x: 0.050046444, y: 0.47270736, z: -0.2951157, w: 0.8288244}
   m_LocalPosition: {x: -11.23, y: 0.52, z: -16.6}
   m_LocalScale: {x: 0.73244005, y: 0.73244, z: 0.7324401}
   m_Children:
@@ -32,7 +33,20 @@ Transform:
   - {fileID: 3628760784294867820}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 11.3880005, y: -8.1710005, z: -5.872}
+  m_LocalEulerAnglesHint: {x: 21.221, y: 53.988003, z: -28.296001}
+--- !u!65 &5886041182017344284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584219862685922554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6284313, y: 1.4018364, z: 1}
+  m_Center: {x: -0.00694686, y: 0.70506066, z: -0.0000024669803}
 --- !u!1001 &8584219861312002166
 PrefabInstance:
   m_ObjectHideFlags: 0
