@@ -29,6 +29,8 @@ public class CharacterInteraction : Interactable
 
     private AudioSource audioSource;
 
+    public float takeBeerTime = 2;
+
     private void Awake()
     {
         HasBeer = false;
@@ -134,18 +136,21 @@ public class CharacterInteraction : Interactable
 
         GameState.Instance.IncrementBeers();
 
-        StartCoroutine(LerpBeerToHand(beer, 2));
+        StartCoroutine(LerpBeerToHand(beer, takeBeerTime));
     }
 
     IEnumerator LerpBeerToHand(GameObject beer, float time)
     {
         float currentTime = 0;
+        Vector3 initial_pos = beer.transform.localPosition;
+        Vector3 initial_scale = beer.transform.localScale;
+        Quaternion initial_rot = beer.transform.rotation;
 
         while(currentTime < time)
         {
-            beer.transform.localPosition = Vector3.Slerp(beer.transform.localPosition, Beer_Pos, currentTime / time);
-            beer.transform.localScale = Vector3.Slerp(beer.transform.localScale, Beer_Scale, currentTime / time);
-            beer.transform.localRotation = Quaternion.Slerp(beer.transform.localRotation, Beer_Rot, currentTime / time);
+            beer.transform.localPosition = Vector3.Slerp(initial_pos, Beer_Pos, currentTime / time);
+            beer.transform.localScale = Vector3.Slerp(initial_scale, Beer_Scale, currentTime / time);
+            beer.transform.localRotation = Quaternion.Slerp(initial_rot, Beer_Rot, currentTime / time);
 
             currentTime += Time.smoothDeltaTime;
             yield return new WaitForFixedUpdate();
