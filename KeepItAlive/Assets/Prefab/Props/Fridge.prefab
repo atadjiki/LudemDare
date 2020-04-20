@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5c00f21bd8f9141861e0dfe0f26e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpTime: 1
+  lerpTime: 0.5
   closedAngle: 0
-  openAngle: -90
+  openAngle: -100
 --- !u!1 &4894105646025547214
 GameObject:
   m_ObjectHideFlags: 0

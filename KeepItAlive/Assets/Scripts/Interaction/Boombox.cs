@@ -116,18 +116,22 @@ public class Boombox : Interactable
         obj.GetComponent<Collider>().enabled = false;
         obj.transform.parent = this.transform;
 
-        StartCoroutine(LerpObjectToDeck(obj, 3));
+        StartCoroutine(LerpObjectToDeck(obj, 2));
     }
 
     IEnumerator LerpObjectToDeck(GameObject obj, float time)
     {
         float currentTime = 0;
 
+        Vector3 initial_pos = obj.transform.localPosition;
+        Vector3 initial_scale = obj.transform.localScale;
+        Quaternion initial_rot = obj.transform.localRotation;
+
         while (currentTime < time)
         {
-            obj.transform.localPosition = Vector3.Slerp(obj.transform.localPosition, Deck_Pos, currentTime / time);
-            obj.transform.localScale = Vector3.Slerp(obj.transform.localScale, Deck_Scale, currentTime / time);
-            obj.transform.localRotation = Quaternion.Slerp(obj.transform.localRotation, Deck_Rot, currentTime / time);
+            obj.transform.localPosition = Vector3.Slerp(initial_pos, Deck_Pos, currentTime / time);
+            obj.transform.localScale = Vector3.Slerp(initial_scale, Deck_Scale, currentTime / time);
+            obj.transform.localRotation = Quaternion.Slerp(initial_rot, Deck_Rot, currentTime / time);
 
             currentTime += Time.smoothDeltaTime;
             yield return new WaitForFixedUpdate();

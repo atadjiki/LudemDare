@@ -6,7 +6,7 @@ public class Door : Interactable
 {
     private bool opened = false;
     private bool moving = false;
-    public float lerpTime = 5f;
+    public float lerpTime = 1f;
 
     private Transform DoorTransform;
 
@@ -51,9 +51,11 @@ public class Door : Interactable
         moving = true;
         float currentTime = 0;
 
+        float initial_angle = DoorTransform.localEulerAngles.y;
+
         while (currentTime < lerpTime)
         {
-            DoorTransform.localEulerAngles = new Vector3(0, Mathf.LerpAngle(DoorTransform.localEulerAngles.y, targetAngle, currentTime/lerpTime), 0);
+            DoorTransform.localEulerAngles = new Vector3(0, Mathf.LerpAngle(initial_angle, targetAngle, currentTime/lerpTime), 0);
             currentTime += Time.smoothDeltaTime;
             yield return new WaitForEndOfFrame();
         }
