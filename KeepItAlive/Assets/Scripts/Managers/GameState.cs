@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class GameState : MonoBehaviour
     private int HandedOutBeers = 0;
     private int GuestCount;
 
+    private HashSet<Constants.Dialogue.Character> Characters;
+
 
     private void Awake()
     {
@@ -31,6 +34,41 @@ public class GameState : MonoBehaviour
         }
 
         CurrentPhase = Phase.Start;
+
+        Characters = new HashSet<Constants.Dialogue.Character>();
+    }
+
+    IEnumerator StartBlackThenFade()
+    {
+        
+        yield return new WaitForSeconds(3);
+        UIManager.Instance.FadeCamera(false, 3);
+    }
+
+    public Constants.Dialogue.Character RegisterCharacter()
+    {
+        Array values = Enum.GetValues(typeof(Constants.Dialogue.Character));
+
+        if (Characters.Count >= values.Length)
+        {
+            return 0;
+        }
+
+        Constants.Dialogue.Character character;
+
+        while (true)
+        {
+            character = (Constants.Dialogue.Character)UnityEngine.Random.Range(0, values.Length);
+
+            if (Characters.Contains(character) == false)
+            {
+                break;
+            }
+        }
+
+        Characters.Add(character);
+
+        return character;
     }
 
     private void Update()

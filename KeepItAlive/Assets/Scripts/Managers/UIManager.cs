@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI subtitle_text;
     private bool showing_subtitles;
 
+    public Image FadePanel;
+
     private static UIManager _instance;
 
     public static UIManager Instance { get { return _instance; } }
@@ -29,6 +31,9 @@ public class UIManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        FadePanel.gameObject.SetActive(true);
+        FadeCamera(false, 10);
     }
 
     public bool SubtitlesShowing()
@@ -90,5 +95,35 @@ public class UIManager : MonoBehaviour
         subtitles_panel.SetActive(false);
         subtitle_text.text = "";
         showing_subtitles = false;
+    }
+
+    public void FadeCamera(bool on, float duration)
+    {
+
+        StopAllCoroutines();
+
+        if(on)
+        {
+            StartCoroutine(FadeCameraTo(255, duration));
+        }
+        else
+        {
+            StartCoroutine(FadeCameraTo(0, duration));
+        }
+    }
+
+    IEnumerator FadeCameraTo(float targetAlpha, float duration)
+    {
+        Color initialColor = FadePanel.color;
+
+        float currentTime = 0;
+
+        while(currentTime < duration)
+        {
+            FadePanel.color = Color.Lerp(initialColor, new Color(initialColor.r, initialColor.g, initialColor.b, targetAlpha), currentTime / duration);
+            currentTime += Time.smoothDeltaTime;
+
+            yield return null;
+        }    
     }
 }

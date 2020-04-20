@@ -103,7 +103,7 @@
                 }
                 else if (type == Type.DislikesMusic)
                 {
-                    result = "didn't pitchfork give this track a 3/10? amateur pick";
+                    result = "didn't pitchfork give this track a 3/10?";
                 }
             }
             else if (character == Character.Three)
@@ -122,7 +122,7 @@
                 }
                 else if (type == Type.NeedsBeer)
                 {
-                    result = "i wonder where the beer is. you should find some";
+                    result = "i wonder where the beer is. you should find some!";
                 }
                 else if (type == Type.NoMusicPlaying)
                 {
@@ -130,15 +130,15 @@
                 }
                 else if (type == Type.MusicPlaying)
                 {
-                    result = "man, this song takes me back to last party";
+                    result = "man, this song takes me back to last party!";
                 }
                 else if (type == Type.LikesMusic)
                 {
-                    result = "did you pick this song? you should be a dj";
+                    result = "did you pick this song? you should be a dj!";
                 }
                 else if (type == Type.DislikesMusic)
                 {
-                    result = "no offense, but i think you might have bad taste bro";
+                    result = "they really call anything a song nowadays...";
                 }
             }
             else if (character == Character.Four)
@@ -165,7 +165,7 @@
                 }
                 else if (type == Type.MusicPlaying)
                 {
-                    result = "when there's music i dont have to be alone with my thoughts!";
+                    result = "with music i'm not alone with my thoughts!";
                 }
                 else if (type == Type.LikesMusic)
                 {
@@ -197,7 +197,7 @@
                 }
                 else if (type == Type.NoMusicPlaying)
                 {
-                    result = "it's so quiet. you hear that typing noise too?";
+                    result = "so quiet,. you hear that typing noise too?";
                 }
                 else if (type == Type.MusicPlaying)
                 {
@@ -225,7 +225,7 @@
                 }
                 else if (type == Type.HasBeer)
                 {
-                    result = "a few more of these and i'll be drunk enough to drive!";
+                    result = "one more beer and i'll be drunk enough to drive!";
                 }
                 else if (type == Type.NeedsBeer)
                 {
@@ -241,7 +241,7 @@
                 }
                 else if (type == Type.LikesMusic)
                 {
-                    result = "good song. too bad cassettes are a dying medium.";
+                    result = "too bad cassettes are a dying medium.";
                 }
                 else if (type == Type.DislikesMusic)
                 {

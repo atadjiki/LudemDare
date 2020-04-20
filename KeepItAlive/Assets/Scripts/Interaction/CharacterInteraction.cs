@@ -38,6 +38,8 @@ public class CharacterInteraction : Interactable
         Beer_Rot.eulerAngles = new Vector3(0,UnityEngine.Random.Range(0, 360),0);
 
         audioSource = GetComponent<AudioSource>();
+
+        Character = GameState.Instance.RegisterCharacter();
     }
 
     public override void Interact()
