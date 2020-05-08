@@ -38,7 +38,8 @@ public class GameState : MonoBehaviour
 
         Characters = new HashSet<Constants.Dialogue.Character>();
 
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public Constants.Dialogue.Character RegisterCharacter()

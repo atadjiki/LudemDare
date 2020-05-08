@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
         Vector2 Look_PitchRoll_Vector = Actions.Player.LookPitchRoll.ReadValue<Vector2>();
 
         float roll = Look_PitchRoll_Vector.x;
-        float pitch = Look_PitchRoll_Vector.y;
+        float pitch = Look_PitchRoll_Vector.y * -1;
         
 
         Quaternion deltaRotation = Quaternion.Euler(new Vector3(pitch * Speed_Pitch * Time.fixedDeltaTime, roll * Speed_Roll * Time.fixedDeltaTime, 0));

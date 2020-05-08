@@ -36,7 +36,16 @@ public class UIManager : MonoBehaviour
 
         FadePanel.gameObject.SetActive(true);
         FadeCamera(false, 5);
-       
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+    }
+
+    private void OnGUI()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public bool SubtitlesShowing()
